@@ -100,9 +100,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="MCP Location Tools Server")
     parser.add_argument(
         "--transport",
-        choices=["stdio", "sse"],
-        default="sse",
-        help="Transport mode (default: sse for deployment)",
+        choices=["stdio", "sse", "streamable-http"],
+        default="streamable-http",
+        help="Transport mode (default: streamable-http for cloud deployment)",
     )
     parser.add_argument("--host", default="0.0.0.0", help="Host to bind")
     parser.add_argument(
@@ -115,7 +115,9 @@ if __name__ == "__main__":
 
     mcp.settings.host = args.host
     mcp.settings.port = args.port
+    mcp.settings.stateless_http = True
 
-    print(f"[MCP SERVER] Starting on http://{args.host}:{args.port}/sse")
+    print(f"[MCP SERVER] Starting on http://{args.host}:{args.port}")
+    print(f"[MCP SERVER] Transport: {args.transport}")
     print(f"[MCP SERVER] Tools: web_search, search_location_info, generate_maps_link")
     mcp.run(transport=args.transport)

@@ -1,1 +1,1 @@
-web: python mcp_server.py --transport sse --port $PORT
+web: python mcp_server.py --transport streamable-http --port $PORT
