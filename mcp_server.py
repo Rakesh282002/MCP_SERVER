@@ -116,6 +116,8 @@ if __name__ == "__main__":
     mcp.settings.host = args.host
     mcp.settings.port = args.port
     mcp.settings.stateless_http = True
+    # Disable DNS rebinding protection for cloud deployment behind reverse proxy
+    mcp.settings.transport_security.enable_dns_rebinding_protection = False
 
     print(f"[MCP SERVER] Starting on http://{args.host}:{args.port}")
     print(f"[MCP SERVER] Transport: {args.transport}")
